@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DataStructures.Extension;
-
-namespace DataStructures.GenericHeap
+﻿namespace DataStructures.GenericHeap
 {
+    using System;
+    using System.Collections.Generic;
+    using DataStructures.Extension;
+
     public class MinHeapify<T> : IHeapify<T> where T : IComparable<T>
     {
         public MinHeapify()
@@ -20,7 +17,7 @@ namespace DataStructures.GenericHeap
 
         public void Heapify(IList<T> heapCollection, int index, int heapSize)
         {
-            int leftChild = index << 1;
+            int leftChild = (index << 1) + 1;
             int rightChild = leftChild + 1;
 
             int minIndex = index;

@@ -1,32 +1,52 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DataStructures.GenericHeap
+﻿namespace DataStructures.GenericHeap
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using DataStructures.Extension;
+
     public class Heap<T> where T : IComparable<T>
     {
-        private List<T> heapList;
-        private long size;
+        public List<T> HeapCollection
+        {
+            get;
+            protected set;
+        }
+
+        public long Size
+        {
+            get;
+            protected set;
+        }
 
         private IHeapify<T> heapify;
 
         public Heap()
-            : this(Enumerable.Empty<T>())
+            : this(Enumerable.Empty<T>(), new MaxHeapify<T>())
         {
         }
 
-        public Heap(IEnumerable<T> collection)
+        public Heap(IEnumerable<T> collection, IHeapify<T> heapify)
         {
             if (collection == null)
             {
                 throw new ArgumentNullException("collection");
             }
 
-            this.heapList = new List<T>(collection);
-            this.size = this.heapList.Count;
+            if (heapify == null)
+            {
+                throw new ArgumentNullException("heapify");
+            }
+
+
+            this.HeapCollection = new List<T>(collection);
+            this.Size = this.HeapCollection.Count;
+            this.heapify = heapify;
+
+            if (this.HeapCollection.Any())
+            {
+                this.BuildHeap();
+            }
         }
 
         public void Insert(T item)
@@ -36,37 +56,47 @@ namespace DataStructures.GenericHeap
                 throw new ArgumentNullException("item");
             }
 
-            this.size++;
-            this.heapList.Add(item);
+            this.Size++;
+            this.HeapCollection.Add(item);
 
-            this.Heapify((int)this.size);
+            this.Heapify((int)this.Size);
+        }
+
+
+        public T Top()
+        {
+            return this.HeapCollection[0];
         }
 
         public T ExtractTop()
         {
+            T top = this.HeapCollection[0];
 
+            int lastElementIndex = (int)(Size - 1);
+            this.HeapCollection.Swap(0, lastElementIndex);
+            this.HeapCollection.RemoveAt(lastElementIndex);
+            this.Size--;
+
+            this.Heapify(0);
+
+            return top;
         }
 
-        public T RemoveAt(int index)
+        protected void BuildHeap()
         {
-
-        }
-
-        private void Heapify(int index)
-        {
-            if (heapify != null)
-            {
-                this.heapify.Heapify(this.heapList, index, (int)this.size);
-            }
-        }
-
-        private void BuildHeap()
-        {
-            int mid = (int)(this.size / 2);
+            int mid = (int)(this.Size / 2);
 
             for (int i = mid; i >= 0; i--)
             {
                 this.Heapify(i);
+            }
+        }
+
+        protected void Heapify(int index)
+        {
+            if (heapify != null)
+            {
+                this.heapify.Heapify(this.HeapCollection, index, (int)this.Size);
             }
         }
     }

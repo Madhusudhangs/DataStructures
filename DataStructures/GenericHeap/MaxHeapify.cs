@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DataStructures.GenericHeap
+﻿namespace DataStructures.GenericHeap
 {
+    using System;
+    using System.Collections.Generic;
+
     public class MaxHeapify<T> : IHeapify<T> where T : IComparable<T>
     {
         public void Heapify(IList<T> heapCollection, int index)
@@ -15,7 +12,7 @@ namespace DataStructures.GenericHeap
 
         public void Heapify(IList<T> heapCollection, int index, int heapSize)
         {
-            int leftChild = index << 1;
+            int leftChild = (index << 1) + 1;
             int rightChild = leftChild + 1;
 
             int maxIndex = index;
