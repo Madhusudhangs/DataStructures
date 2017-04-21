@@ -46,11 +46,11 @@
     <Compile Include="Arrays\MostFrequentElement.cs" />
     <Compile Include="DynamicProgramming\RodCutting.cs" />
     <Compile Include="Extension\CollectionExtension.cs" />
-    <Compile Include="GenericHeap\Heap.cs" />
-    <Compile Include="GenericHeap\Heapsort.cs" />
-    <Compile Include="GenericHeap\IHeapify.cs" />
-    <Compile Include="GenericHeap\MaxHeapify.cs" />
-    <Compile Include="GenericHeap\MinHeapify.cs" />
+    <Compile Include="Generic\Heap\Heap.cs" />
+    <Compile Include="Generic\Heap\Heapsort.cs" />
+    <Compile Include="Generic\Heap\IHeapify.cs" />
+    <Compile Include="Generic\Heap\MaxHeapify.cs" />
+    <Compile Include="Generic\Heap\MinHeapify.cs" />
     <Compile Include="Graph\DirectedGraph.cs" />
     <Compile Include="Graph\DirectedWeightedEdge.cs" />
     <Compile Include="Graph\GraphBase.cs" />

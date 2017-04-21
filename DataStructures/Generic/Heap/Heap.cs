@@ -1,4 +1,4 @@
-﻿namespace DataStructures.GenericHeap
+﻿namespace DataStructures.Generic
 {
     using System;
     using System.Collections.Generic;
@@ -61,7 +61,6 @@
 
             this.Heapify((int)this.Size);
         }
-
 
         public T Top()
         {

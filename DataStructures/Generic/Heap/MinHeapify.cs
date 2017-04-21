@@ -1,4 +1,4 @@
-﻿namespace DataStructures.GenericHeap
+﻿namespace DataStructures.Generic
 {
     using System;
     using System.Collections.Generic;
