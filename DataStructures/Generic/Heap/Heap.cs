@@ -5,7 +5,7 @@
     using System.Linq;
     using DataStructures.Extension;
 
-    public class Heap<T> where T : IComparable<T>
+    public class Heap<T> where T : IComparable<T>, IEquatable<T>
     {
         public List<T> HeapCollection
         {
@@ -59,7 +59,7 @@
             this.Size++;
             this.HeapCollection.Add(item);
 
-            this.Heapify((int)this.Size);
+            this.heapify.HeapifyBottomUp(this.HeapCollection, (int)this.Size - 1, (int)this.Size);
         }
 
         public T Top()
@@ -81,6 +81,11 @@
             return top;
         }
 
+        public int FindIndex(T item)
+        {
+            return this.HeapCollection.FindIndex(0, (element) => element.Equals(item));
+        }
+
         protected void BuildHeap()
         {
             int mid = (int)(this.Size / 2);
@@ -95,7 +100,7 @@
         {
             if (heapify != null)
             {
-                this.heapify.Heapify(this.HeapCollection, index, (int)this.Size);
+                this.heapify.HeapifyTopDown(this.HeapCollection, index, (int)this.Size);
             }
         }
     }

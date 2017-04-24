@@ -47,10 +47,12 @@
     <Compile Include="DynamicProgramming\RodCutting.cs" />
     <Compile Include="Extension\CollectionExtension.cs" />
     <Compile Include="Generic\Heap\Heap.cs" />
+    <Compile Include="Generic\Heap\HeapExtension.cs" />
     <Compile Include="Generic\Heap\Heapsort.cs" />
     <Compile Include="Generic\Heap\IHeapify.cs" />
     <Compile Include="Generic\Heap\MaxHeapify.cs" />
     <Compile Include="Generic\Heap\MinHeapify.cs" />
+    <Compile Include="Generic\Queue\PriorityQueue.cs" />
     <Compile Include="Graph\DirectedGraph.cs" />
     <Compile Include="Graph\DirectedWeightedEdge.cs" />
     <Compile Include="Graph\GraphBase.cs" />

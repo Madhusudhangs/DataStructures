@@ -5,6 +5,8 @@
 
     public interface IHeapify<T> where T : IComparable<T>
     {
-        void Heapify(IList<T> heapCollection, int index, int heapSize);
+        void HeapifyTopDown(IList<T> heapCollection, int index, int heapSize);
+
+        void HeapifyBottomUp(IList<T> heapCollection, int index, int heapSize);
     }
 }
