@@ -4,8 +4,9 @@
     using System.Collections.Generic;
     using System.Linq;
     using DataStructures.Extension;
+    using DataStructures.Generic.Heap.Extension;
 
-    public class Heap<T> where T : IComparable<T>, IEquatable<T>
+    public class Heap<T> : IHeapify<T> where T : IComparable<T>, IEquatable<T>
     {
         public List<T> HeapCollection
         {
@@ -19,29 +20,21 @@
             protected set;
         }
 
-        private IHeapify<T> heapify;
 
         public Heap()
-            : this(Enumerable.Empty<T>(), new MaxHeapify<T>())
+            : this(Enumerable.Empty<T>())
         {
         }
 
-        public Heap(IEnumerable<T> collection, IHeapify<T> heapify)
+        public Heap(IEnumerable<T> collection)
         {
             if (collection == null)
             {
                 throw new ArgumentNullException("collection");
             }
 
-            if (heapify == null)
-            {
-                throw new ArgumentNullException("heapify");
-            }
-
-
             this.HeapCollection = new List<T>(collection);
             this.Size = this.HeapCollection.Count;
-            this.heapify = heapify;
 
             if (this.HeapCollection.Any())
             {
@@ -59,7 +52,7 @@
             this.Size++;
             this.HeapCollection.Add(item);
 
-            this.heapify.HeapifyBottomUp(this.HeapCollection, (int)this.Size - 1, (int)this.Size);
+            this.HeapifyBottomUp(this.HeapCollection, (int)this.Size - 1, (int)this.Size);
         }
 
         public T Top()
@@ -83,7 +76,45 @@
 
         public int FindIndex(T item)
         {
-            return this.HeapCollection.FindIndex(0, (element) => element.Equals(item));
+            return this.HeapCollection.IndexOf(item);
+        }
+
+        public virtual void HeapifyBottomUp(IList<T> heapCollection, int index, int heapSize)
+        {
+            while (index > 1
+                   && heapCollection[index.ParentIndex()].CompareTo(heapCollection[index]) < 0)
+            {
+                heapCollection.Swap(index, index.ParentIndex());
+                index = index.ParentIndex();
+            }
+        }
+
+        public virtual void HeapifyTopDown(IList<T> heapCollection, int index, int heapSize)
+        {
+            int leftChild = index.LeftChildIndex();
+            int rightChild = leftChild.RightChildIndex();
+
+            int maxIndex = index;
+
+            if (leftChild >= 0
+                && leftChild < heapSize
+                && heapCollection[index].CompareTo(heapCollection[leftChild]) < 0)
+            {
+                maxIndex = leftChild;
+            }
+            else if (rightChild >= 0
+                       && rightChild < heapSize
+                       && heapCollection[index].CompareTo(heapCollection[rightChild]) < 0)
+            {
+                maxIndex = rightChild;
+            }
+
+            if (maxIndex != index)
+            {
+                heapCollection.Swap<T>(index, maxIndex);
+
+                this.HeapifyTopDown(heapCollection, maxIndex, heapSize);
+            }
         }
 
         protected void BuildHeap()
@@ -98,10 +129,7 @@
 
         protected void Heapify(int index)
         {
-            if (heapify != null)
-            {
-                this.heapify.HeapifyTopDown(this.HeapCollection, index, (int)this.Size);
-            }
+            this.HeapifyTopDown(this.HeapCollection, index, (int)this.Size);
         }
     }
 }

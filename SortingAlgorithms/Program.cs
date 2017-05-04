@@ -21,7 +21,7 @@ namespace SortingAlgorithms
 
             //InsertionSort.TestCaseSort();         
 
-            Mergesort.MergesortAlgo.TestMergeSort();  
+            //Mergesort.MergesortAlgo.TestMergeSort();  
 
             Console.ReadLine();
         }

@@ -1,18 +1,14 @@
-﻿namespace DataStructures.Generic
+﻿namespace DataStructures.GenericHeap
 {
     using System;
     using System.Collections.Generic;
     using DataStructures.Extension;
+    using Generic;
 
-    public class Heapsort<T> : Heap<T> where T : IComparable<T>
+    public class Heapsort<T> : Heap<T> where T : IComparable<T>, IEquatable<T>
     {
         public Heapsort(IList<T> collection)
-            : this(collection, new MaxHeapify<T>())
-        {
-        }
-
-        public Heapsort(IList<T> collection, IHeapify<T> heapify)
-            : base(collection, heapify)
+            : base(collection)
         {
         }
 

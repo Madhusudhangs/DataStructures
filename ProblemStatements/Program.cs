@@ -21,7 +21,9 @@ namespace ProblemStatements
             //}
 
             //MostFrequencyNumber.TestMaxFrequencyNumber();
-            RotatedVersionArray.TestCase();
+            //RotatedVersionArray.TestCase();
+
+            SortEvenAndOdd.TestOddAndEvenSort();
 
             Console.ReadLine();
         }

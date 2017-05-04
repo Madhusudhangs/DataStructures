@@ -3,7 +3,7 @@
     using System;
     using System.Collections.Generic;
 
-    public interface IHeapify<T> where T : IComparable<T>
+    public interface IHeapify<T> where T : IComparable<T>, IEquatable<T>
     {
         void HeapifyTopDown(IList<T> heapCollection, int index, int heapSize);
 

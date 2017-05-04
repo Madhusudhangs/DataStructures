@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataStructures.Extension
 {
-    public static class CollectionExtension
+    internal static class CollectionExtension
     {
         public static void Swap<T>(this IList<T> list, int index1, int index2)
         {

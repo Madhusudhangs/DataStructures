@@ -52,6 +52,7 @@
     <Compile Include="Generic\Heap\IHeapify.cs" />
     <Compile Include="Generic\Heap\MaxHeapify.cs" />
     <Compile Include="Generic\Heap\MinHeapify.cs" />
+    <Compile Include="Generic\Queue\IndexPriorityQueue.cs" />
     <Compile Include="Generic\Queue\PriorityQueue.cs" />
     <Compile Include="Graph\DirectedGraph.cs" />
     <Compile Include="Graph\DirectedWeightedEdge.cs" />

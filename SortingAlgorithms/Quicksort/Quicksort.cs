@@ -2,11 +2,11 @@
 {
     public class Quicksort
     {
-        public static void Sort(int[] input, int p, int r)
+        public static void Sort(int[] input, int p, int r, bool des = false)
         {
             if (p < r)
             {
-                int q = Partition(input, p, r);
+                int q = Partition(input, p, r, des);
                 //int q = (p + r) / 2;
 
                 System.Console.WriteLine("{0} = Sort(input,{1},{2})", q, p, r);
@@ -19,7 +19,7 @@
             }
         }
 
-        private static int Partition(int[] input, int p, int r)
+        private static int Partition(int[] input, int p, int r, bool des = false)
         {
             int i = p - 1;
             int x = input[r];
@@ -27,10 +27,15 @@
             System.Console.WriteLine("Partition from {0} to {1}", p, r - 1);
             for (int j = p; j <= r - 1; j++)
             {
-                if (input[j] <= x)
+                if (!des && input[j] <= x)
                 {
                     i++;
                     Swap(input, i, j);
+                }
+                else if (input[j] >= x)
+                {
+                    //i++;
+                    //Swap(input, i, j);
                 }
             }
 

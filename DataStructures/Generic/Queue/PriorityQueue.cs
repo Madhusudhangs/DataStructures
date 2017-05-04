@@ -8,16 +8,9 @@ namespace DataStructures.Generic.Queue
 {
     public class PriorityQueue<T> : Heap<T> where T : IComparable<T>, IEquatable<T>
     {
-        private IHeapify<T> heapify;
-
         public PriorityQueue()
-            : this(new MaxHeapify<T>())
-        {
-        }
-
-        public PriorityQueue(IHeapify<T> heapify)
-            : base(Enumerable.Empty<T>(), heapify)
-        {
+            : base(Enumerable.Empty<T>())
+        {            
         }
 
         /// <summary>
@@ -51,7 +44,7 @@ namespace DataStructures.Generic.Queue
         {
             if (this.Size == 0)
             {
-                throw new ArithmeticException("Queue is empty");
+                throw new InvalidOperationException("Queue is empty");
             }
 
             return this.ExtractTop();
@@ -75,8 +68,8 @@ namespace DataStructures.Generic.Queue
 
             this.HeapCollection[index] = newItem;
 
-            this.heapify.HeapifyBottomUp(this.HeapCollection, index, (int)this.Size);
-            this.heapify.HeapifyTopDown(this.HeapCollection, index, (int)this.Size);
+            this.HeapifyBottomUp(this.HeapCollection, index, (int)this.Size);
+            this.HeapifyTopDown(this.HeapCollection, index, (int)this.Size);
         }
     }
 }

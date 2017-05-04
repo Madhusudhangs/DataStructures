@@ -5,7 +5,7 @@
     using DataStructures.Extension;
     using DataStructures.Generic.Heap.Extension;
 
-    public class MaxHeapify<T> : IHeapify<T> where T : IComparable<T>
+    public class MaxHeapify<T> : IHeapify<T> where T : IComparable<T>, IEquatable<T>
     {
         public void Heapify(IList<T> heapCollection, int index)
         {
@@ -47,7 +47,7 @@
                 heapCollection.Swap<T>(index, maxIndex);
 
                 this.HeapifyTopDown(heapCollection, maxIndex, heapSize);
-            }            
+            }
         }
     }
 }

@@ -50,12 +50,20 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RotatedVersionArray.cs" />
+    <Compile Include="SortEvenAndOdd.cs" />
     <Compile Include="SparseArrays.cs" />
     <Compile Include="StringReverse.cs" />
+    <Compile Include="SumCombinations.cs" />
     <Compile Include="VersionDifference.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SortingAlgorithms\SortingAlgorithms.csproj">
+      <Project>{3a5573ec-55b5-47ef-b822-2bfb7addd736}</Project>
+      <Name>SortingAlgorithms</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
